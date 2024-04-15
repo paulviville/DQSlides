@@ -1,0 +1,33 @@
+<h2>Dual Quaternions</h2>
+<hr style="width: 70%; display:flex; justify-content:space-evenly;">
+	<p style="font-size: 70px; font-weight: bold;">\(\zeta = Q_r + \epsilon Q_t\)</p>
+	<div class="r-hstack" style="padding-top: 5%;"> 
+	<div class="" style="font-size: 44px; padding-left: 5%">
+			<!-- \(Q_r \text{: rotation}\) \(Q_t \text{: translation}\) -->
+		<ul  id="quaternions_div">
+			<li style="padding-top: 0%">Translation puis Rototation: <br>
+				\(\zeta(R,T)= R + \epsilon\frac{1}{2} R T\)</li>
+			<li style="padding-top: 5%">Rotation puis Translation: <br>
+				\(\zeta(R,T)= R + \epsilon\frac{1}{2} T R\)</li>
+			<li style="padding-top: 5%">Unitaire:<br>Représente une rotation et translation</li>
+
+		</ul>
+
+	</div>
+	<div class="fragment" style="font-size: 44px; padding-left: 5%">
+		<ul  id="quaternions_div">
+			<li>Addition: \( \zeta_1 + \zeta_2 = (Qr_1 + Qr_2) + \epsilon(Qt_1 + Qt_2)\)</li>
+			<li style="padding-top: 5%">Multiplication: \(\zeta_1 \zeta_2 = (Qr_1 Qr_2) + \epsilon(Qr_1 Qt_2 + Qt_1 Qr_2)\)</li>
+			<li style="padding-top: 5%">Multiplication Scalaire: \(s\zeta = sQr + \epsilon sQt\)</li>
+			<li style="padding-top: 5%">Conjugé: \(\zeta^* = Qr^* + \epsilon Qt^*\)</li>
+			<li style="padding-top: 5%">Norme: \(||\zeta|| = \zeta \zeta^*\)</li>
+		</ul>
+
+	</div>
+
+
+</div>
+
+<aside class="notes">
+	<br>- 
+</aside>
