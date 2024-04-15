@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Slides</title>
+		<link rel="stylesheet" href="./multiCol.css">
+		<link rel="stylesheet" href="./Reveal/reveal.css">
+		<link rel="stylesheet" href="./Reveal/theme/white.css">
+		<link rel="stylesheet" href="./Reveal/highlight/monokai.css">
+	</head>
+
+	<body>
+		<div class="reveal">
+			<div class="slides" id="slides">
+
+				<section data-external="./Slides/0_title.html" data-visibility="uncounted"></section>
+				<section id="quaternions" data-external="./Slides/quaternions.html"></section>
+				<section id="quaternionsInterpolation" data-external="./Slides/quaternionsInterpolation.html"></section>
+				<section id="dualNumbers" data-external="./Slides/dualNumbers.html"></section>
+				<section id="dqInterpolation" data-external="./Slides/dqInterpolation.html"></section>
+
+			</div>
+		</div>
+
+		<script type="module">
+			import Reveal from './Reveal/reveal.esm.js'
+
+			import Slide from './Slides/Slide.js';
+			import {slide_quaternions} from './Slides/quaternions.js';
+			import {slide_quaternionsInterpolation} from './Slides/quaternionsInterpolation.js';
+			import {slide_dqInterpolation} from './Slides/dqInterpolation.js';
+
+			import RevealNotes from './Reveal/notes/notes.esm.js'
+			import RevealMath from './Reveal/math/math.esm.js'
+			import RevealHighlight from './Reveal/highlight/highlight.esm.js'
+			import RevealMarkdown from './Reveal/markdown/markdown.esm.js'
+
+			const slides = new Array();
+			slides["quaternions"] = slide_quaternions;
+			slides["quaternionsInterpolation"] = slide_quaternionsInterpolation;
+			slides["dqInterpolation"] = slide_dqInterpolation;
+
+			// slides[] = ;
+
+			let active_slide;
+			Reveal.addEventListener('slidechanged', function(event) {
+				if(active_slide) active_slide.close();
+				var sectionID = Reveal.getCurrentSlide().id;
+				active_slide = slides[sectionID]
+				if(active_slide) active_slide.open();
+
+				console.log( Reveal.getCurrentSlide().id)
+			});
+
+			const fragment_events = [];
+			Reveal.addEventListener('fragmentshown', function(event) {
+				if(fragment_events[event.fragment.id])
+					fragment_events[event.fragment.id]();
+			});
+			Reveal.addEventListener('fragmenthidden', function(event) {
+				if(fragment_events[event.fragment.id])
+					fragment_events[event.fragment.id]();
+			});
+
+
+			Reveal.initialize({
+				touch: false,
+				slideNumber: 'c/t',
+				transition: 'none',
+				center: true,
+				hideAddressBar: true,
+				plugins: [RevealNotes, RevealMath, RevealHighlight, RevealMarkdown],
+				dependencies: [{
+						src: 'Reveal/external/external.js',
+						condition: function() {
+							return !!document.querySelector( '[data-external],[data-external-replace]' );
+						}
+					}],
+				width: 1920,
+				height: 1400
+			}).then(() => {
+				slide_quaternions.init(
+					document.getElementById("Quaternions")
+				);
+				slide_quaternionsInterpolation.init(
+					document.getElementById("QuaternionsInterpolation")
+				);
+
+				slide_dqInterpolation.init(
+					document.getElementById("DQInterpolation")
+				);
+
+				console.log(document.getElementById("DQInterpolation"))
+				Reveal.slide(0);
+			});
+
+
+		</script>
+
+	</body>
+
+</html>
